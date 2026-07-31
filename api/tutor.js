@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-5",
+        model: "gpt-5-mini",
         input: `Você é um tutor de ${subject} para estudantes brasileiros de vestibular. Responda em português, de forma didática, objetiva e acolhedora.\n\nConversa:\n${conversation}`,
       }),
     });
