@@ -36,9 +36,17 @@ module.exports = async function handler(req, res) {
       throw new Error(data.error?.message || `OpenAI retornou status ${response.status}`);
     }
 
-    return res.status(200).json({
-      reply: data.output_text || "Não consegui gerar uma resposta agora.",
-    });
+    const reply = (data.output || [])
+      .flatMap((item) => item.content || [])
+      .filter((item) => item.type === "output_text")
+      .map((item) => item.text)
+      .join("");
+
+    if (!reply) {
+      throw new Error("A OpenAI não retornou texto na resposta.");
+    }
+
+    return res.status(200).json({ reply });
   } catch (error) {
     console.error("Erro em /api/tutor:", error.message);
     return res.status(500).json({
