@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recorda — Plano de estudo que se refaz sozinho pro seu vestibular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="AprendIA.css">
+</head>
+<body>
+ 
+<header>
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>Recorda</div>
+    <nav class="nav-links">
+      <a href="#produto">O tutor</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#precos">Preços</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost btn-sm">Entrar</a>
+      <a href="#precos" class="btn btn-primary btn-sm">Começar grátis</a>
+    </div>
+  </div>
+</header>
+ 
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Ensino médio · ENEM · Vestibular</div>
+        <h1>Um plano de estudo<br>que <span class="mark">se refaz sozinho
+          <svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2,18 C60,4 240,4 298,16" stroke="#E8FF6B" stroke-width="14" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span> quando você erra.</h1>
+        <p class="lead">Diga seu vestibular e a data da prova. A Recorda monta sua semana de estudo com base no edital — e reorganiza os próximos dias toda vez que um simulado mostra onde você está fraco.</p>
+        <div class="hero-actions">
+          <a href="#precos" class="btn btn-primary">Montar meu plano grátis</a>
+          <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+        </div>
+        <div class="proof-line">
+          <span class="avatars">
+            <span style="background:#4A7A63"></span>
+            <span style="background:#7C8B80"></span>
+            <span style="background:#D8965F"></span>
+          </span>
+          usado por alunos de 3º ano em mais de 300 escolas
+        </div>
+      </div>
+ 
+      <div class="demo">
+        <div class="plan-card">
+          <div class="plan-top">
+            <span class="plan-title">Sua semana</span>
+            <span class="countdown">132 dias até o ENEM</span>
+          </div>
+          <div class="plan-rows" id="planRows"></div>
+          <div class="plan-note" id="planNote">&nbsp;</div>
+          <button class="btn btn-ghost" id="simBtn">Simular: fui mal no simulado de Química</button>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="problem">
+    <div class="wrap problem-grid">
+      <div class="problem-col old">
+        <span class="label">Do jeito antigo</span>
+        <ul>
+          <li><span class="ico">✕</span>Abrir o edital e não saber por onde começar</li>
+          <li><span class="ico">✕</span>Estudar mais a matéria que gosta, não a que precisa</li>
+          <li><span class="ico">✕</span>Revisar tudo igual, sem prioridade nenhuma</li>
+          <li><span class="ico">✕</span>Descobrir só no simulado que ficou um buraco enorme</li>
+        </ul>
+      </div>
+      <div class="problem-col new">
+        <span class="label">Com a Recorda</span>
+        <ul>
+          <li><span class="ico">✓</span>Plano dia a dia com base no edital do seu vestibular</li>
+          <li><span class="ico">✓</span>Cada simulado ajusta o peso de cada matéria na semana</li>
+          <li><span class="ico">✓</span>O que você erra mais vira prioridade automática</li>
+          <li><span class="ico">✓</span>Nas últimas semanas o plano vira revisão, não conteúdo novo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="recursos">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Recursos</div>
+        <h2>O que monta e sustenta o plano</h2>
+        <p>Quatro peças que trabalham juntas pra transformar "eu devia estudar mais" em uma agenda que você realmente segue.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="fnum">Plano</div>
+          <h3>Plano personalizado por vestibular</h3>
+          <p>Escolha ENEM, Fuvest, Unicamp ou o vestibular da sua cidade — o plano cruza com o edital específico dessa prova.</p>
+        </div>
+        <div class="feature">
+          <div class="fnum">Ajuste</div>
+          <h3>Reorganização automática</h3>
+          <p>Errou um simulado de Química? Os próximos dias ganham mais blocos dessa matéria, tirando espaço do que já está sólido.</p>
+        </div>
+        <div class="feature">
+          <div class="fnum">Cobertura</div>
+          <h3>Nenhum tópico esquecido</h3>
+          <p>O plano acompanha quanto do edital já foi coberto, pra nenhuma matéria ficar de fora até a véspera da prova.</p>
+        </div>
+        <div class="feature">
+          <div class="fnum">Reta final</div>
+          <h3>Revisão nas últimas semanas</h3>
+          <p>Conforme a data se aproxima, o plano para de trazer conteúdo novo e vira revisão consolidada do que mais cai.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="produto">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Prévia do produto</div>
+        <h2>Cada matéria com sua própria aba de estudo</h2>
+        <p>Ao entrar numa matéria, a IA fica só nela — sem misturar assunto — e guarda o histórico dessa conversa. Em exatas, um quadro ao lado pra calcular; em química, uma bancada pra montar ligações.</p>
+      </div>
+ 
+      <div class="section-head" style="margin-bottom:24px;">
+        <p style="font-family:var(--font-mono); font-size:12.5px; color:var(--ink-faint); max-width:640px;">Nesta prévia o conteúdo de cada matéria é fixo, só pra mostrar a ideia. Busca de conteúdo na internet e geração de imagens pela IA exigem uma integração de backend, ainda não incluída aqui.</p>
+      </div>
+ 
+      <div class="subject-tabs" role="tablist" aria-label="Escolher matéria">
+        <button class="stab active" data-subject="fisica" role="tab" aria-selected="true">Física</button>
+        <button class="stab" data-subject="matematica" role="tab" aria-selected="false">Matemática</button>
+        <button class="stab" data-subject="quimica" role="tab" aria-selected="false">Química</button>
+        <button class="stab" data-subject="biologia" role="tab" aria-selected="false">Biologia</button>
+        <button class="stab" data-subject="historia" role="tab" aria-selected="false">História</button>
+        <button class="stab" data-subject="portugues" role="tab" aria-selected="false">Português</button>
+      </div>
+ 
+      <div class="product-panel">
+        <div class="chat-mock">
+          <div class="chat-head"><span class="chat-dot"></span><span id="chatSubjectLabel">Tutor de Física</span></div>
+          <div class="chat-body" id="chatBody"></div>
+          <div class="chat-input">
+            <form id="chatForm" style="display:flex; gap:8px;">
+              <input type="text" id="chatInput" placeholder="Pergunte algo sobre a matéria..." autocomplete="off">
+              <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+            </form>
+          </div>
+        </div>
+ 
+        <div class="tool-panel" id="toolPanel"></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="how" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Como funciona</div>
+        <h2>Três passos, da inscrição ao primeiro dia de plano</h2>
+      </div>
+      <div class="how-steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Diga seu vestibular e a data</h3>
+          <p>ENEM, Fuvest, vestibular estadual — a Recorda já carrega o edital certo.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Receba o plano da semana</h3>
+          <p>Matérias distribuídas nos dias, com tempo estimado por bloco de estudo.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Faça o simulado, o plano se ajusta</h3>
+          <p>Cada resultado muda a prioridade das próximas semanas automaticamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Quem já usa</div>
+        <h2>Alunos de 3º ano em provas diferentes</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <span class="subj">ENEM · cursinho popular</span>
+          <p class="quote">"Parei de estudar por instinto. Abro o app e ele já sabe o que preciso ver hoje."</p>
+          <div class="who"><span class="av">JL</span>Julia L.</div>
+        </div>
+        <div class="testi">
+          <span class="subj">Fuvest · 3º ano</span>
+          <p class="quote">"Depois que fui mal em Física, o plano virou quase só Física por uma semana. Fez sentido."</p>
+          <div class="who"><span class="av">PB</span>Pedro B.</div>
+        </div>
+        <div class="testi">
+          <span class="subj">Vestibular estadual</span>
+          <p class="quote">"Nunca mais cheguei perto da prova com matéria que eu nem tinha aberto ainda."</p>
+          <div class="who"><span class="av">AS</span>Ana S.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="precos">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Preços</div>
+        <h2>Comece de graça, evolua quando sentir falta</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="plan-tier">
+          <div class="pname">Grátis</div>
+          <div class="price">R$ 0<span>/mês</span></div>
+          <p class="pdesc">Pra testar o plano com uma matéria por semana.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Plano semanal para 1 matéria prioritária</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>1 simulado de ajuste por semana</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Edital do ENEM incluído</li>
+          </ul>
+          <a href="#" class="btn btn-ghost">Criar conta grátis</a>
+        </div>
+        <div class="plan-tier featured">
+          <span class="badge">Mais escolhido</span>
+          <div class="pname">Pro</div>
+          <div class="price">R$ 29<span>/mês</span></div>
+          <p class="pdesc">Pra quem já escolheu o vestibular e quer o plano completo.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Plano completo, todas as matérias do edital</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Simulados ilimitados com reajuste automático</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Editais de múltiplos vestibulares</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#E8FF6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Modo reta final automático</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Assinar Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="cta-final">
+    <div class="wrap">
+      <div class="kicker" style="text-align:center;">Comece agora</div>
+      <h2>Diga sua prova e sua data. Seu plano da semana sai pronto em menos de um minuto.</h2>
+      <a href="#" class="btn btn-primary">Montar meu plano grátis</a>
+    </div>
+  </section>
+</main>
+ 
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo"><span class="dot"></span>Recorda</div>
+    <nav class="fnav">
+      <a href="#recursos">Recursos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#precos">Preços</a>
+    </nav>
+    <div class="copy">© 2026 Recorda</div>
+  </div>
+</footer>
+ 
+
+ 
+
+ 
+  <script src="AprendIA.js" defer></script>
+</body>
+</html>
+ 
