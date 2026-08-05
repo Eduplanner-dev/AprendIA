@@ -492,3 +492,109 @@ const subjects = {
  
   renderChat('fisica');
   renderTool('fisica');
+
+  /* ---------- STUDY PLANNER (local browser storage) ---------- */
+  (() => {
+    const storage = {
+      profile: 'recorda-profile-v1',
+      tasks: 'recorda-tasks-v1',
+      routine: 'recorda-routine-v1'
+    };
+    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const weekdayNames = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+    const read = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
+    const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+    const dateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const asDate = (key) => { const [year, month, day] = key.split('-').map(Number); return new Date(year, month - 1, day); };
+    const calendarGrid = document.getElementById('calendarGrid');
+    const calendarTitle = document.getElementById('calendarTitle');
+    const selectedDateLabel = document.getElementById('selectedDateLabel');
+    const taskList = document.getElementById('taskList');
+    const taskForm = document.getElementById('taskForm');
+    const routineForm = document.getElementById('routineForm');
+    const routineList = document.getElementById('routineList');
+    const modal = document.getElementById('profileModal');
+    let viewDate = new Date(); viewDate.setDate(1);
+    let selectedKey = dateKey(new Date());
+    let tasks = read(storage.tasks, {});
+    let routine = read(storage.routine, []);
+    let profile = read(storage.profile, null);
+
+    function eventData(key) {
+      const date = asDate(key);
+      const regular = (tasks[key] || []).map(item => ({ ...item, routine: false }));
+      const recurring = routine.filter(item => Number(item.day) === date.getDay()).map(item => ({ ...item, id: `routine-${item.id}`, type: 'Rotina', title: item.subject, time: item.time, routine: true }));
+      return [...regular, ...recurring].sort((a, b) => a.time.localeCompare(b.time));
+    }
+    function renderProfile() {
+      const name = profile?.name || 'Seu perfil';
+      document.getElementById('profileName').textContent = name;
+      document.getElementById('profileStatus').textContent = profile ? 'Planejamento salvo neste navegador' : 'Entre para salvar seu nome';
+      document.getElementById('profileAvatar').textContent = name.charAt(0).toUpperCase();
+      document.getElementById('loginBtn').textContent = profile ? name.split(' ')[0] : 'Entrar';
+      document.getElementById('plannerLoginBtn').textContent = profile ? 'Editar perfil' : 'Entrar ou criar perfil';
+    }
+    function renderCalendar() {
+      calendarTitle.textContent = `${monthNames[viewDate.getMonth()]} ${viewDate.getFullYear()}`;
+      calendarGrid.innerHTML = '';
+      const first = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1);
+      const start = new Date(first); start.setDate(1 - first.getDay());
+      const today = dateKey(new Date());
+      for (let index = 0; index < 42; index++) {
+        const day = new Date(start); day.setDate(start.getDate() + index);
+        const key = dateKey(day);
+        const events = eventData(key);
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = `calendar-day${day.getMonth() !== viewDate.getMonth() ? ' other-month' : ''}${key === selectedKey ? ' selected' : ''}${key === today ? ' today' : ''}`;
+        cell.setAttribute('aria-label', `${day.getDate()} de ${monthNames[day.getMonth()]}`);
+        cell.innerHTML = `<span class="day-number">${day.getDate()}</span><span class="calendar-events"></span>`;
+        const eventBox = cell.querySelector('.calendar-events');
+        events.slice(0, 2).forEach(item => { const tag = document.createElement('span'); tag.className = `calendar-event ${item.type}`; tag.textContent = `${item.time} ${item.title}`; eventBox.appendChild(tag); });
+        if (events.length > 2) { const more = document.createElement('span'); more.className = 'event-more'; more.textContent = `+${events.length - 2}`; eventBox.appendChild(more); }
+        cell.addEventListener('click', () => { selectedKey = key; viewDate = new Date(day.getFullYear(), day.getMonth(), 1); render(); });
+        calendarGrid.appendChild(cell);
+      }
+    }
+    function renderTasks() {
+      const date = asDate(selectedKey);
+      selectedDateLabel.textContent = `${date.getDate()} de ${monthNames[date.getMonth()]}`;
+      const events = eventData(selectedKey);
+      taskList.innerHTML = '';
+      if (!events.length) { taskList.innerHTML = '<p class="empty-tasks">Nada marcado para este dia. Adicione uma tarefa ou bloco de estudo.</p>'; return; }
+      events.forEach(item => {
+        const card = document.createElement('div'); card.className = `task-item${item.done ? ' done' : ''}`;
+        const copy = document.createElement('div'); copy.className = 'task-copy';
+        copy.innerHTML = `<span class="task-title">${item.title}</span><span class="task-meta"><span class="task-type">${item.type}</span> · ${item.time}${item.routine ? ' · rotina' : ''}</span>`;
+        if (!item.routine) {
+          const check = document.createElement('input'); check.className = 'task-check'; check.type = 'checkbox'; check.checked = Boolean(item.done); check.setAttribute('aria-label', `Concluir ${item.title}`);
+          check.addEventListener('change', () => { const target = tasks[selectedKey].find(task => task.id === item.id); target.done = check.checked; write(storage.tasks, tasks); render(); });
+          const remove = document.createElement('button'); remove.className = 'delete-btn'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Excluir ${item.title}`);
+          remove.addEventListener('click', () => { tasks[selectedKey] = tasks[selectedKey].filter(task => task.id !== item.id); if (!tasks[selectedKey].length) delete tasks[selectedKey]; write(storage.tasks, tasks); render(); });
+          card.append(check, copy, remove);
+        } else { card.append(copy); }
+        taskList.appendChild(card);
+      });
+    }
+    function renderRoutine() {
+      routineList.innerHTML = '';
+      if (!routine.length) { routineList.innerHTML = '<li>Sem blocos recorrentes.</li>'; return; }
+      [...routine].sort((a,b) => Number(a.day) - Number(b.day) || a.time.localeCompare(b.time)).forEach(item => {
+        const row = document.createElement('li'); row.innerHTML = `<span>${weekdayNames[item.day]} · ${item.time}<br>${item.subject}</span>`;
+        const remove = document.createElement('button'); remove.className = 'delete-btn'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Excluir rotina ${item.subject}`);
+        remove.addEventListener('click', () => { routine = routine.filter(block => block.id !== item.id); write(storage.routine, routine); render(); }); row.appendChild(remove); routineList.appendChild(row);
+      });
+    }
+    function render() { renderProfile(); renderCalendar(); renderTasks(); renderRoutine(); }
+    document.getElementById('previousMonth').addEventListener('click', () => { viewDate.setMonth(viewDate.getMonth() - 1); renderCalendar(); });
+    document.getElementById('nextMonth').addEventListener('click', () => { viewDate.setMonth(viewDate.getMonth() + 1); renderCalendar(); });
+    document.getElementById('todayBtn').addEventListener('click', () => { const today = new Date(); viewDate = new Date(today.getFullYear(), today.getMonth(), 1); selectedKey = dateKey(today); render(); });
+    taskForm.addEventListener('submit', (event) => { event.preventDefault(); const title = document.getElementById('taskTitle').value.trim(); if (!title) return; const item = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, title, type: document.getElementById('taskType').value, time: document.getElementById('taskTime').value || '18:00', done: false }; tasks[selectedKey] = [...(tasks[selectedKey] || []), item]; write(storage.tasks, tasks); taskForm.reset(); document.getElementById('taskTime').value = '18:00'; render(); });
+    routineForm.addEventListener('submit', (event) => { event.preventDefault(); const subject = document.getElementById('routineSubject').value.trim(); if (!subject) return; routine.push({ id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, day: document.getElementById('routineDay').value, time: document.getElementById('routineTime').value || '18:00', subject }); write(storage.routine, routine); routineForm.reset(); document.getElementById('routineTime').value = '18:00'; render(); });
+    function openModal() { document.getElementById('profileNameInput').value = profile?.name || ''; modal.hidden = false; document.getElementById('profileNameInput').focus(); }
+    function closeModal() { modal.hidden = true; }
+    document.getElementById('loginBtn').addEventListener('click', openModal); document.getElementById('plannerLoginBtn').addEventListener('click', openModal); document.getElementById('closeModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+    document.getElementById('profileForm').addEventListener('submit', (event) => { event.preventDefault(); const name = document.getElementById('profileNameInput').value.trim(); if (!name) return; profile = { name }; write(storage.profile, profile); closeModal(); renderProfile(); });
+    render();
+  })();
