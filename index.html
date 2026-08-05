@@ -16,13 +16,14 @@
     <div class="logo"><span class="dot"></span>Recorda</div>
     <nav class="nav-links">
       <a href="#produto">O tutor</a>
+      <a href="#planejador">Planejador</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#recursos">Recursos</a>
       <a href="#precos">Preços</a>
     </nav>
     <div class="nav-cta">
-      <a href="#" class="btn btn-ghost btn-sm">Entrar</a>
-      <a href="#precos" class="btn btn-primary btn-sm">Começar grátis</a>
+      <button type="button" class="btn btn-ghost btn-sm" id="loginBtn">Entrar</button>
+      <a href="#planejador" class="btn btn-primary btn-sm">Começar grátis</a>
     </div>
   </div>
 </header>
@@ -66,6 +67,37 @@
     </div>
   </section>
  
+  <section class="planner-section" id="planejador">
+    <div class="wrap">
+      <div class="section-head planner-heading">
+        <div class="kicker">Meu planejamento</div>
+        <h2>Estude com uma semana que cabe na sua vida.</h2>
+        <p>Organize deveres, provas, trabalhos e blocos de estudo. Tudo fica salvo neste navegador.</p>
+      </div>
+      <div class="planner-app">
+        <aside class="planner-sidebar">
+          <div class="profile-card" id="profileCard"><span class="profile-avatar" id="profileAvatar">R</span><div><strong id="profileName">Seu perfil</strong><span id="profileStatus">Entre para salvar seu nome</span></div></div>
+          <button class="btn btn-primary planner-login" type="button" id="plannerLoginBtn">Entrar ou criar perfil</button>
+          <div class="routine-box">
+            <div class="planner-label">Rotina de estudo</div><p>Defina blocos recorrentes para a sua semana.</p>
+            <form id="routineForm" class="compact-form">
+              <select id="routineDay" aria-label="Dia da semana"><option value="1">Segunda</option><option value="2">Terça</option><option value="3">Quarta</option><option value="4">Quinta</option><option value="5">Sexta</option><option value="6">Sábado</option><option value="0">Domingo</option></select>
+              <input id="routineTime" type="time" value="18:00" aria-label="Horário"><input id="routineSubject" maxlength="40" placeholder="Matéria ou revisão" aria-label="Matéria"><button class="btn btn-ghost btn-sm" type="submit">Adicionar bloco</button>
+            </form><ul class="routine-list" id="routineList" aria-live="polite"></ul>
+          </div>
+        </aside>
+        <div class="calendar-area">
+          <div class="calendar-toolbar"><div><span class="planner-label">Calendário</span><h3 id="calendarTitle">Mês</h3></div><div class="calendar-actions"><button class="icon-btn" id="previousMonth" type="button" aria-label="Mês anterior">←</button><button class="today-btn" id="todayBtn" type="button">Hoje</button><button class="icon-btn" id="nextMonth" type="button" aria-label="Próximo mês">→</button></div></div>
+          <div class="weekdays" aria-hidden="true"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="calendar-grid" id="calendarGrid" aria-label="Calendário de estudos"></div>
+        </div>
+        <aside class="task-panel">
+          <div class="task-panel-heading"><span class="planner-label">Dia selecionado</span><h3 id="selectedDateLabel">Escolha um dia</h3></div>
+          <form id="taskForm" class="task-form"><input id="taskTitle" maxlength="80" placeholder="Ex.: revisão de funções" required aria-label="Título da atividade"><div class="task-form-row"><select id="taskType" aria-label="Tipo"><option value="Estudo">Estudo</option><option value="Dever">Dever</option><option value="Prova">Prova</option><option value="Trabalho">Trabalho</option><option value="Revisão">Revisão</option></select><input id="taskTime" type="time" value="18:00" aria-label="Horário"></div><button class="btn btn-primary btn-sm" type="submit">Adicionar ao dia</button></form>
+          <div class="task-list" id="taskList" aria-live="polite"></div>
+        </aside>
+      </div>
+    </div>
+  </section>
   <section class="problem">
     <div class="wrap problem-grid">
       <div class="problem-col old">
@@ -271,6 +303,12 @@
  
 
  
+  <div class="modal-backdrop" id="profileModal" hidden>
+    <div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+      <button class="modal-close" type="button" id="closeModal" aria-label="Fechar">×</button><div class="kicker">Seu espaço</div><h2 id="profileModalTitle">Crie seu perfil local</h2><p>Seu nome e seu planejamento ficam guardados apenas neste navegador.</p>
+      <form id="profileForm"><label for="profileNameInput">Como podemos te chamar?</label><input id="profileNameInput" maxlength="40" placeholder="Seu nome" required autocomplete="name"><button class="btn btn-primary" type="submit">Salvar e continuar</button></form>
+    </div>
+  </div>
   <script src="AprendIA.js" defer></script>
 </body>
 </html>
