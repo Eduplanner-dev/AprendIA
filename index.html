@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AprendIA — Organize seus estudos</title>
+<title>Recorda — Organize seus estudos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,10 +13,11 @@
  
 <header>
   <div class="nav">
-    <div class="logo"><span class="dot"></span>AprendIA</div>
+    <div class="logo"><span class="dot"></span>Recorda</div>
     <nav class="nav-links">
       <a href="#produto">Conteúdos</a>
       <a href="#planejador">Planejador</a>
+      <a href="#central">Central do aluno</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#recursos">Recursos</a>
     </nav>
@@ -101,7 +102,7 @@
         </ul>
       </div>
       <div class="problem-col new">
-        <span class="label">Com a AprendIA</span>
+        <span class="label">Com a Recorda</span>
         <ul>
           <li><span class="ico">✓</span>Calendário mensal para visualizar sua rotina</li>
           <li><span class="ico">✓</span>Atividades separadas por estudo, dever, prova, trabalho e revisão</li>
@@ -178,6 +179,56 @@
     </div>
   </section>
  
+  <section class="student-hub" id="central">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Central do aluno</div>
+        <h2>Apoio para estudar melhor, no seu ritmo.</h2>
+        <p>Ferramentas locais para manter o foco, compartilhar dúvidas e adaptar a visualização às suas necessidades.</p>
+      </div>
+      <div class="hub-grid">
+        <article class="hub-card focus-card">
+          <span class="hub-label">Modo foco</span>
+          <h3>Um intervalo de cada vez</h3>
+          <p id="focusMessage">Escolha um tempo e comece sua sessão de estudo.</p>
+          <div class="focus-time" id="focusTime" aria-live="polite">25:00</div>
+          <div class="focus-presets" aria-label="Duração da sessão">
+            <button type="button" class="focus-preset active" data-minutes="25">25 min</button>
+            <button type="button" class="focus-preset" data-minutes="15">15 min</button>
+            <button type="button" class="focus-preset" data-minutes="5">5 min</button>
+          </div>
+          <div class="custom-focus-time"><label for="focusMinutes">Ou defina seu tempo</label><div><input id="focusMinutes" type="number" min="1" max="60" value="25" inputmode="numeric" aria-describedby="focusLimit"><span>min</span><button type="button" class="access-btn" id="focusApply">Usar</button></div></div>
+          <p class="focus-limit" id="focusLimit">Limite de 60 minutos por sessão. Acima de 30 minutos, faça uma pausa curta para se movimentar e descansar os olhos.</p>
+          <div class="focus-actions"><button type="button" class="btn btn-primary" id="focusStart">Começar</button><button type="button" class="btn btn-ghost" id="focusReset">Reiniciar</button></div>
+        </article>
+        <article class="hub-card questions-card">
+          <span class="hub-label">Mural de dúvidas</span>
+          <h3>Pergunte sem se expor</h3>
+          <form id="questionForm" class="question-form">
+            <select id="questionSubject" aria-label="Matéria"><option>Geral</option><option>Matemática</option><option>Português</option><option>Ciências</option><option>História</option></select>
+            <textarea id="questionText" maxlength="240" placeholder="Qual é a sua dúvida?" required aria-label="Sua dúvida"></textarea>
+            <button type="submit" class="btn btn-primary btn-sm">Publicar dúvida</button>
+          </form>
+          <div id="questionList" class="question-list" aria-live="polite"></div>
+        </article>
+        <article class="hub-card wellbeing-card">
+          <span class="hub-label">Acessibilidade e bem-estar</span>
+          <h3>Deixe o espaço mais confortável</h3>
+          <div class="access-actions">
+            <button type="button" class="access-btn" id="contrastToggle" aria-pressed="false">Alto contraste</button>
+            <button type="button" class="access-btn" id="fontDecrease" aria-label="Diminuir texto">A−</button>
+            <button type="button" class="access-btn" id="fontIncrease" aria-label="Aumentar texto">A+</button>
+          </div>
+          <p class="wellbeing-question">Como você está para estudar hoje?</p>
+          <div class="mood-actions" role="group" aria-label="Como você está hoje">
+            <button type="button" data-mood="😟">😟<span>cansado</span></button><button type="button" data-mood="😐">😐<span>neutro</span></button><button type="button" data-mood="🙂">🙂<span>bem</span></button>
+          </div>
+          <p class="mood-feedback" id="moodFeedback" aria-live="polite">Seu check-in fica salvo somente neste navegador.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="how" id="como-funciona">
     <div class="wrap">
       <div class="section-head">
@@ -216,12 +267,12 @@
  
 <footer>
   <div class="wrap foot-row">
-    <div class="logo"><span class="dot"></span>AprendIA</div>
+    <div class="logo"><span class="dot"></span>Recorda</div>
     <nav class="fnav">
       <a href="#recursos">Recursos</a>
       <a href="#como-funciona">Como funciona</a>
     </nav>
-    <div class="copy">© 2026 AprendIA</div>
+    <div class="copy">© 2026 Recorda</div>
   </div>
 </footer>
  
