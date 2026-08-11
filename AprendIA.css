@@ -288,3 +288,25 @@
   .modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(8,16,12,.72);display:grid;place-items:center;padding:20px}.modal-backdrop[hidden]{display:none !important}.profile-modal{width:min(100%,430px);background:var(--bg-panel);border:1px solid var(--line-strong);border-radius:16px;padding:32px;position:relative}.profile-modal h2{font-size:30px;margin:10px 0}.profile-modal p{color:var(--ink-muted);font-size:14px;margin-bottom:20px}.profile-modal form{display:grid;gap:10px}.profile-modal label{font-size:13px;color:var(--ink-muted)}.profile-modal input{border:1px solid var(--line-strong);background:var(--bg-panel-2);color:var(--ink);border-radius:8px;padding:12px;font:15px var(--font-body)}.modal-close{position:absolute;right:15px;top:12px;border:0;background:transparent;color:var(--ink-muted);font-size:26px;cursor:pointer}
   @media (max-width:1050px){.planner-app{grid-template-columns:230px 1fr}.task-panel{grid-column:1/-1}.task-list{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:720px){.planner-app{grid-template-columns:1fr}.task-panel{grid-column:auto}.calendar-area,.planner-sidebar,.task-panel{padding:18px}.calendar-day{min-height:67px;padding:4px}.calendar-event{font-size:9px}.task-list{grid-template-columns:1fr}.calendar-toolbar h3,.task-panel h3{font-size:19px}}
+
+  /* ---------- CENTRAL DO ALUNO ---------- */
+  .student-hub{border-top:1px solid var(--line);background:var(--bg)}
+  .hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  .hub-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column}
+  .hub-label{font:11px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--highlight);margin-bottom:15px}
+  .hub-card h3{font:600 22px var(--font-display);margin-bottom:10px}.hub-card p{font-size:14px;line-height:1.5;color:var(--ink-muted)}
+  .focus-time{font:600 clamp(50px,6vw,72px)/1 var(--font-display);letter-spacing:-.04em;color:var(--highlight);margin:24px 0;text-align:center}
+  .focus-presets,.focus-actions,.access-actions,.mood-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .focus-preset,.access-btn{border:1px solid var(--line-strong);border-radius:8px;background:var(--bg-panel-2);color:var(--ink);cursor:pointer;padding:8px 10px;font:12px var(--font-mono)}
+  .focus-preset.active,.focus-preset:hover,.access-btn:hover{border-color:var(--highlight);color:var(--highlight)}
+  .focus-actions{margin-top:14px}.focus-actions .btn{flex:1;justify-content:center}
+  .custom-focus-time{margin-top:16px}.custom-focus-time label{display:block;margin-bottom:7px;font:11px var(--font-mono);color:var(--ink-faint)}.custom-focus-time>div{display:flex;align-items:center;gap:7px}.custom-focus-time input{width:64px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg-panel-2);color:var(--ink);padding:8px;font:13px var(--font-body)}.custom-focus-time input:focus{outline:none;border-color:var(--highlight)}.custom-focus-time span{font:12px var(--font-mono);color:var(--ink-muted)}.focus-limit{margin-top:11px;font:11px/1.45 var(--font-mono)!important;color:var(--ink-faint)!important}.focus-limit.warning{color:#ffc9b3!important}
+  .question-form{display:grid;gap:9px;margin-top:12px}.question-form select,.question-form textarea{width:100%;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg-panel-2);color:var(--ink);padding:10px;font:13px var(--font-body)}
+  .question-form textarea{height:76px;resize:vertical}.question-form select:focus,.question-form textarea:focus{outline:none;border-color:var(--highlight)}
+  .question-list{display:grid;gap:8px;margin-top:16px;max-height:196px;overflow:auto}.question-item{padding:10px;border-radius:8px;background:var(--bg-panel-2);border-left:2px solid var(--highlight)}
+  .question-item strong{display:block;font:11px var(--font-mono);color:var(--highlight);margin-bottom:4px}.question-item p{font-size:13px;color:var(--ink);overflow-wrap:anywhere}.questions-empty{font-size:13px;color:var(--ink-faint)}
+  .wellbeing-question{margin:24px 0 10px}.mood-actions button{border:1px solid var(--line-strong);border-radius:9px;background:var(--bg-panel-2);color:var(--ink);padding:8px 10px;cursor:pointer;font-size:19px;display:grid;gap:3px}.mood-actions button span{font:10px var(--font-mono);color:var(--ink-muted)}.mood-actions button:hover,.mood-actions button.active{border-color:var(--highlight);background:rgba(232,255,107,.08)}
+  .mood-feedback{margin-top:14px;font:12px var(--font-mono);color:var(--ink-faint)!important}
+  body.high-contrast{--bg:#050505;--bg-panel:#101010;--bg-panel-2:#1a1a1a;--ink:#fff;--ink-muted:#f1f1f1;--ink-faint:#d4d4d4;--line:#767676;--line-strong:#fff;--highlight:#ffff00;--highlight-ink:#000}
+  body.font-large{font-size:18px}body.font-small{font-size:14px}
+  @media (max-width:980px){.hub-grid{grid-template-columns:1fr}.hub-card{min-height:0}}
